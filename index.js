@@ -1,8 +1,13 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const path = require('path');
 
-app.all('/', (req, res) => {
-    console.log("SHXLOGS - homepage visit.")
-    res.send('This is the shadow client for project rebirth, an unbl*cked games site for your enjoyment. This is an early test version of the site.')
-})
-app.listen(process.env.PORT || 3000)
+const app = express();
+const port = process.env.PORT || 8080;
+
+// sendFile will go here
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, '/index.html'));
+});
+
+app.listen(port);
+console.log('Server started at http://localhost:' + port);
