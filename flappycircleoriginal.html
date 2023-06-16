@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flappy Circle</title>
+  </head>
+  <body>
+  	<h1 id="s"></h1>
+  	<h1 id="demo">Score: 0</h1>
+  	<div></div>
+  	<button id="start" onclick="startGame()" width="600">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp     Insert Coin      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+    <div></div>
+    <canvas id="canvas" width="650" height="600"></canvas>
+    <div></div>
+    <script>
+    var ctx = canvas.getContext("2d")
+var width = canvas.width;
+var height = canvas.height;
+var a
+ctx.fillStyle = "skyblue";
+ctx.beginPath();
+ctx.rect(0, 0, 9999999999, 999999999999);
+ctx.fill();
+ctx.fillStyle = "green"
+ctx.beginPath()
+ctx.rect(0,height-50,50000000,50)
+ctx.fill()
+var birdY = height/2
+var prevY = birdY
+var pipeX = width
+ctx.fillStyle = "yellow";
+ctx.beginPath();
+ctx.arc(80, birdY,25,0, 50);
+ctx.fill();
+var random1 = Math.floor(Math.random() * 201)+height/50
+random2 = Math.floor(Math.random() * -31)-170
+var score = 0
+document.addEventListener("keydown", key);
+function key(event){
+	if(event.keyCode == 32){
+		jump()
+	}
+}
+
+document.addEventListener('click', jump)
+
+function jump(){
+	birdY -= 45
+	
+}
+
+
+function gameOver(){
+	document.getElementById("demo").innerHTML ="Score: "+ score + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp GAME OVER"
+	clearInterval(a)
+	clearInterval(sc)
+	birdY = height/2
+ 	prevY = birdY
+ 	pipeX = width
+ 	document.getElementById('start').style.visibility = 'visible';
+ 	
+ 	
+
+}
+
+function game(){
+ctx.clearRect(0,0,height,width)
+birdY = birdY+0.4
+pipeX = pipeX-score/50
+ctx.fillStyle = "skyblue";
+ctx.beginPath();
+ctx.rect(0, 0, height+1000, width+1000);
+ctx.fill();
+ctx.fillStyle = "green"
+ctx.beginPath()
+ctx.rect(0,height-50,7000,50)
+ctx.fill()
+ctx.fillStyle = "yellow";
+ctx.beginPath();
+ctx.arc(80, birdY, 20,0, 50);
+ctx.fill();
+ctx.fillStyle = "red";
+ctx.beginPath();
+ctx.rect(pipeX, 0, 50,random1);
+ctx.fill();
+ctx.fillStyle = "red";
+ctx.beginPath();
+ctx.rect(pipeX, height-50, 50,random2);
+ctx.fill();
+
+
+
+if(pipeX <= 0){
+pipeX = width
+random1 = Math.floor(Math.random() * 201)+50
+random2 = Math.floor(Math.random() * -31)-170
+}
+
+if(birdY >= height-70){
+	gameOver()
+}
+else if(pipeX <= 80)
+	if(350<=birdY){
+	gameOver()
+	}
+	else if(random1>=birdY){
+	gameOver()
+	}
+	
+}
+
+function s(){
+	score = score+1
+	document.getElementById("demo").innerHTML ="Score: "+score
+}
+
+function startGame(){
+document.getElementById('start').style.visibility = 'hidden';
+score = 0
+a = setInterval(game, 1);
+sc = setInterval(s,1000)
+}
+    </script>
+  </body>
+</html> 
