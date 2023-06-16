@@ -1,11 +1,11 @@
-# starter-express-api
+# Project Rebirth
 
-This is the simplest possible nodejs api using express that responds to any request with: 
+This is the home for our new site.
 ```
-Yo!
+SHADOW CLIENT
 ```
 
-### Deploy it in 7 seconds: 
+### Thanks to CYCLIC for running our site! 
 
 [![Deploy to Cyclic](https://deploy.cyclic.app/button.svg)](https://deploy.cyclic.app/)
 
